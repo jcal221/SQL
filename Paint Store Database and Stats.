@@ -1,0 +1,27 @@
+CREATE TABLE paints (id INTEGER PRIMARY KEY, color TEXT, brand TEXT, aisle INTEGER, price INTEGER);
+
+INSERT INTO paints VALUES (1, "red", "Pintuco", 5, 29);
+INSERT INTO paints VALUES (2, "blue", "Sherwin", 4, 25);
+INSERT INTO paints VALUES (3, "yellow", "Williams", 3, 20);
+INSERT INTO paints VALUES (4, "white", "Pinco", 2, 18);
+INSERT INTO paints VALUES (5, "orange", "Pittsburg", 1, 15);
+INSERT INTO paints VALUES (6, "black", "Pintuco", 5, 29);
+INSERT INTO paints VALUES (7, "gray", "Sherwin", 4, 25);
+INSERT INTO paints VALUES (8, "pink", "Williams", 3, 20);
+INSERT INTO paints VALUES (9, "brown", "Pinco", 2, 18);
+INSERT INTO paints VALUES (10, "green", "Pittsburg", 1, 15);
+INSERT INTO paints VALUES (11, "purple", "Pintuco", 5, 29);
+INSERT INTO paints VALUES (12, "magenta", "Sherwin", 4, 25);
+INSERT INTO paints VALUES (13, "cyan", "Williams", 3, 20);
+INSERT INTO paints VALUES (14, "golden", "Pinco", 2, 18);
+INSERT INTO paints VALUES (15, "mustard", "Pittsburg", 1, 15);
+
+
+--display the database ordered by price. 
+SELECT * FROM paints ORDER BY price;
+
+--display price sum of aisle 3
+SELECT id, aisle, SUM(price) FROM paints WHERE "aisle" = 3;
+
+--display the most expensive brand
+SELECT * FROM paints ORDER BY price desc limit 3;
