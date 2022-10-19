@@ -121,4 +121,9 @@ GROUP BY product
 ORDER BY sum(quantity*price) desc 
 LIMIT 1
 
+---14. All the products sold in Los Angeles in February, including how many of each were sold.
 
+SELECT product, 
+sum(quantity) from bit_db.febsales 
+where location like "%Los Angeles%" 
+group by product 
