@@ -136,3 +136,12 @@ from Bit_DB.jansales
 where location like "%NY%" 
 group by location 
 having count(orderID)>= 3
+
+---16.Quantity of each type of headphone sold in February.
+
+SELECT product, 
+sum(quantity) 
+from BIT_Db.Febsales 
+where product like "%headphone%" 
+group by product
+
