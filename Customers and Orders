@@ -127,3 +127,12 @@ SELECT product,
 sum(quantity) from bit_db.febsales 
 where location like "%Los Angeles%" 
 group by product 
+
+---15. Locations in New York that received at least 3 orders in January, and how many orders they each received.
+
+SELECT distinct location, 
+count(orderid) 
+from Bit_DB.jansales 
+where location like "%NY%" 
+group by location 
+having count(orderID)>= 3
