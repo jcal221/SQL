@@ -12,3 +12,7 @@ group by h.hacker_id,h.name having scores>0
 order by scores desc,h.hacker_id;
 
 
+
+
+
+
