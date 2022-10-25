@@ -36,28 +36,26 @@ join invoices as i on i.customerid = c.customerid;
 
 #7. Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers.
 
-SELECT emp.LastName, emp.Firstname, cust.FirstName, cust.LastName, cust.Country, inv.total
-FROM chinook.employees emp 
-JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
-JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
+SELECT e.LastName, e.Firstname, c.FirstName, c.LastName, c.Country, i.total
+from employees e 
+join customers c on c.supportrepid = e.employeeid 
+join invoices i on i.customerid = c.customerid;
 
-#8. 
-SELECT COUNT(*)
-FROM chinook.Invoices
-WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
+#8. How many Invoices were there in 2009?
 
-#9. 
-SELECT SUM(Total)
-FROM chinook.Invoices
-WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
+select count(invoiceid) from invoices where invoicedate like '%2009%'
 
-#10. 
-SELECT t.Name, i.InvoiceLineId
-FROM chinook.Invoice_items i
-JOIN chinook.Tracks t 
-ON i.TrackId = t.TrackId;
+#9.How many Invoices were there in 2009?
 
-#11. 
+select sum(invoiceid) from invoices where invoicedate like '%2009%'
+
+#10. Write a query that includes the purchased track name with each invoice line ID.
+
+SELECT t.name, it.invoiceid from invoice_items it 
+join tracks t on t.trackid = it.trackid
+
+#11. Write a query that includes the purchased track name AND artist name with each invoice line ID.
+
 SELECT ar.name as Artist, t.Name as Track, i.InvoiceLineId
 FROM chinook.Invoice_items i
 LEFT JOIN chinook.tracks t 
@@ -67,7 +65,8 @@ ON a.AlbumID=t.AlbumID
 LEFT JOIN chinook.artists ar
 ON ar.ArtistID=a.ArtistID;
 
-#12. 
+#12. Provide a query that shows all the Tracks, and include the Album name, Media type, and Genre.
+
 SELECT t.Name AS 'Track Name', a.Title AS 'Album Title', m.Name AS 'Media Type', g.Name AS 'Genre'
 FROM chinook.tracks t
 JOIN chinook.Albums a 
@@ -77,7 +76,8 @@ on m.MediaTypeId = t.MediaTypeId
 JOIN chinook.Genres g
 on g.GenreId = t.GenreId;
 
-#13.
+#13. Show the total sales made by each sales agent.
+
 SELECT emp.FirstName, emp.LastName,
 ROUND(SUM(Inv.Total), 2) as 'Total Sales' 
 FROM chinook.Employees emp
@@ -91,7 +91,8 @@ ON Inv.CustomerId = cust.CustomerId
 WHERE emp.Title = 'Sales Support Agent' 
 GROUP BY emp.FirstName;
 
-#14. 
+#14. Which sales agent made the most dollars in sales in 2009?
+
 SELECT emp.FirstName, emp.LastName,
 ROUND(SUM(Inv.Total), 2) as 'Total Sales' 
 FROM chinook.Employees emp
