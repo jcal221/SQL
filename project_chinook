@@ -23,16 +23,19 @@ where billingcountry = 'Brazil';
 
 SELECT * FROM employees where title ='Sales Support Agent'
 
-#5. 
-SELECT DISTINCT BillingCountry FROM chinook.Invoices ;
+#5. Find a unique/distinct list of billing countries from the Invoice table.
 
-#6.
-SELECT emp.LastName, emp.Firstname, inv.InvoiceId
-FROM chinook.Employees emp 
-JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
-JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
+SELECT distinct billingcountry from invoices;
 
-#7. 
+#6.Provide a query that shows the invoices associated with each sales agent. The resulting table should include the Sales Agent's full name.
+
+select e.lastname, e.firstname, i.invoiceid 
+from employees as e 
+join customers as c on c.supportrepid = e.employeeid 
+join invoices as i on i.customerid = c.customerid; 
+
+#7. Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers.
+
 SELECT emp.LastName, emp.Firstname, cust.FirstName, cust.LastName, cust.Country, inv.total
 FROM chinook.employees emp 
 JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
